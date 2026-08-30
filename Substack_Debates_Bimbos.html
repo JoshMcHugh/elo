@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTOPIA &middot; THE ORDER PAPER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #100808;
+      --surface:    #1d0f0f;
+      --border:     rgba(196, 154, 48, 0.22);
+      --cream:      #f0e6d0;
+      --muted:      #c0a894;
+      --faint:      #3a2020;
+      --dim:        #5a3d3d;
+
+      /* Main palette */
+      --orange:     #b8351f;
+      --orange-lo:  rgba(184, 53, 31, 0.10);
+      --gold:       #c49a30;
+      --green:      #155e32;
+      --green-text: #6ee7a8;
+      --blue:       #1a3b8a;
+      --blue-text:  #93c5fd;
+      --tied:       #3b405e;
+      --tied-text:  #c7d2fe;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ══════════════════════════════
+       HEADER
+    ══════════════════════════════ */
+
+    .site-header {
+      padding: 64px 0 52px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .venue-line {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .kicker {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 28px;
+    }
+
+    .event-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(72px, 16vw, 120px);
+      font-weight: 600;
+      font-style: italic;
+      letter-spacing: -0.025em;
+      line-height: 0.88;
+      color: var(--cream);
+      margin-bottom: 16px;
+    }
+
+    .event-sub {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 44px;
+    }
+
+    /* Stats — inline like cancannes */
+    .stats-line {
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 2;
+    }
+
+    .stats-line strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--cream);
+    }
+
+    /* Reveal-all button */
+    .reveal-btn {
+      display: inline-block;
+      font-family: 'Crimson Pro', serif;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cream);
+      background: transparent;
+      border: 1px solid rgba(196, 154, 48, 0.3);
+      padding: 10px 26px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      margin-bottom: 44px;
+    }
+
+    .reveal-btn:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* How-it-works row */
+    .how-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--border);
+      margin-bottom: 10px;
+    }
+
+    .how-cell {
+      padding: 14px 12px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .how-cell:last-child { border-right: none; }
+
+    .how-cell-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 3px;
+    }
+
+    .how-cell-desc {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .how-note {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    /* Verdicts note */
+    .verdicts-note {
+      border-top: 1px solid var(--border);
+      padding: 22px 0 0;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+      text-align: left;
+    }
+
+    .verdicts-note strong { color: var(--cream); }
+
+    /* ══════════════════════════════
+       MOTION SECTIONS
+    ══════════════════════════════ */
+
+    .motion {
+      padding: 64px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .motion-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .motion-eyebrow .num {
+      color: var(--orange);
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .motion-q {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(24px, 5vw, 36px);
+      font-weight: 700;
+      line-height: 1.18;
+      color: var(--cream);
+      margin-bottom: 22px;
+    }
+
+    .motion-q em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .motion-intro {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.72;
+      margin-bottom: 36px;
+    }
+
+    .motion-intro strong { color: var(--cream); font-weight: 600; }
+
+    /* ══════════════════════════════
+       SPEAKER CARDS
+    ══════════════════════════════ */
+
+    .speakers {
+      display: grid;
+      grid-template-columns: 1fr 48px 1fr;
+      border: 1px solid var(--border);
+    }
+
+    .speaker {
+      padding: 20px 20px 24px;
+    }
+
+    .speaker.opp {
+      border-left: 1px solid var(--border);
+    }
+
+    /* Position label above the name */
+    .pos-label {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .speaker.opp .pos-label { text-align: right; }
+
+    /* Name row: badge flush against name */
+    .name-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      margin-bottom: 8px;
+      flex-wrap: nowrap;
+    }
+
+    .speaker.opp .name-row { flex-direction: row-reverse; }
+
+    .badge {
+      flex-shrink: 0;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 3px 6px;
+      margin-top: 5px;
+      margin-right: 8px;
+      font-family: 'Crimson Pro', serif;
+    }
+
+    .speaker.opp .badge {
+      margin-right: 0;
+      margin-left: 8px;
+    }
+
+    .badge-yea  { background: var(--green); color: var(--green-text); }
+    .badge-nay  { background: var(--blue);  color: var(--blue-text);  }
+    .badge-tied { background: var(--tied);  color: var(--tied-text);  }
+
+    .spk-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1.12;
+      color: var(--cream);
+    }
+
+    .spk-affil {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .speaker.opp .spk-affil { text-align: right; }
+
+    .spk-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.3;
+      margin-bottom: 5px;
+    }
+
+    .speaker.opp .spk-title { text-align: right; }
+
+    .spk-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .speaker.opp .spk-desc { text-align: right; }
+
+    /* VS column */
+    .vs-col {
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vs-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--dim);
+      writing-mode: vertical-rl;
+    }
+
+    /* ══════════════════════════════
+       THE CLASH
+    ══════════════════════════════ */
+
+    .clash {
+      border: 1px solid var(--border);
+      border-top: none;
+      padding: 20px;
+    }
+
+    .clash p {
+      font-size: 17px;
+      line-height: 1.72;
+      color: var(--muted);
+    }
+
+    .clash-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--orange);
+      letter-spacing: 0.04em;
+      margin-right: 10px;
+    }
+
+    /* ══════════════════════════════
+       DIVIDE BUTTON
+    ══════════════════════════════ */
+
+    .divide-btn {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-top: none;
+      color: var(--muted);
+      font-family: 'Crimson Pro', serif;
+      font-size: 16px;
+      letter-spacing: 0.08em;
+      padding: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .divide-btn:hover {
+      color: var(--cream);
+      background: var(--orange-lo);
+    }
+
+    .caret {
+      font-size: 9px;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .divide-btn.open .caret { transform: rotate(180deg); }
+
+    /* ══════════════════════════════
+       VERDICT
+    ══════════════════════════════ */
+
+    .verdict {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+
+    .verdict.open { max-height: 1100px; }
+
+    .verdict-inner {
+      border: 1px solid var(--border);
+      border-top: none;
+      padding: 24px 20px 20px;
+      background: var(--surface);
+    }
+
+    .verdict-result {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .verdict-hl {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 14px;
+    }
+
+    /* Inline metadata — exactly like cancannes */
+    .verdict-meta {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 2;
+      margin-bottom: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .verdict-meta strong {
+      color: var(--cream);
+      font-weight: 700;
+      margin-right: 18px;
+    }
+
+    .verdict-analysis {
+      font-size: 16px;
+      line-height: 1.78;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .verdict-analysis strong { color: var(--cream); }
+
+    .verdict-foot {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0;
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+
+    /* ══════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════ */
+
+    @media (max-width: 560px) {
+      .speakers { grid-template-columns: 1fr; }
+
+      .vs-col {
+        border: none;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 8px;
+      }
+
+      .vs-text { writing-mode: horizontal-tb; }
+
+      .speaker.opp {
+        border-left: none;
+        border-top: 1px solid var(--border);
+      }
+
+      .speaker.opp .name-row  { flex-direction: row; }
+      .speaker.opp .pos-label,
+      .speaker.opp .spk-affil,
+      .speaker.opp .spk-title,
+      .speaker.opp .spk-desc  { text-align: left; }
+      .speaker.opp .badge     { margin-left: 0; margin-right: 8px; }
+
+      .how-row { grid-template-columns: 1fr; }
+      .how-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      .how-cell:last-child { border-bottom: none; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════
+     HEADER
+════════════════════════════════ -->
+<header class="site-header">
+  <div class="container">
+
+    <div class="venue-line">Bimbo&rsquo;s 365 Club &middot; San Francisco &middot; December 10, 2025</div>
+    <div class="kicker"><b style="color: #B8351F">Jasmine Sun &amp; Substack present</b></div>
+
+    <div class="event-title">Utopia</div>
+    <div class="event-sub">THE STACKED DEBATES</div>
+
+    <div class="stats-line">
+      <strong>4</strong> Debates &nbsp;&middot;&nbsp; <strong>8</strong> Disputants &middot; The House decides
+    </div>
+
+
+    <div class="verdicts-note" style="color: #A08878">
+      <strong>A note on the verdicts:</strong> Each decision was rendered by audience applause at Bimbo&rsquo;s 365 Club immediately following each debate. Vote percentages are estimated. The analysis is written well after the fact, our best recollection of why the House voted as it did. If you were there and would call any of these differently, you&rsquo;re probably right about at least one.<br></br><strong style="color: rgb(240, 230, 208);">A note on the text:</strong> Sources: personal notes from event + video transcripts &gt; Gemini Notebook summaries &gt; Claude Design. That's why the text here reads so Claude-y. It turns out de-Claudifying text by hand after the fact is pretty heavy lifting!<br></br>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- ════════════════════════════════
+     MOTIONS
+════════════════════════════════ -->
+<main>
+  <div class="container">
+
+
+    <!-- ── 01 · THE CITY ── -->
+    <section class="motion" id="m01">
+
+      <div class="motion-eyebrow"><span class="num">01</span> &middot; The City</div>
+      <h2 class="motion-q">&ldquo;Is San Francisco <em style="color: #B8351F">Back</em>?&rdquo;</h2>
+      <p class="motion-intro">The opening debate.<br></br><strong>Yes:</strong> Mike Solana, who edits one of the most-read tech dispatches in the city and arrives armed with the statistics of recovery.<br></br><strong>No:</strong> Sam Kriss, the British critic who flew to San Francisco to tell a clubful of San Franciscans their city has been replaced by a corporate simulacrum. Numbers vs, character, in the city that purports to invent the future.</p>
+
+      <div class="speakers">
+        <div class="speaker prop">
+          <span class="pos-label">PROPONENT &middot; FOR</span>
+          <div class="name-row">
+            <span class="spk-name">Mike Solana</span>
+          </div>
+          <div class="spk-affil">Pirate Wires &middot; Editor in Chief</div>
+          <div class="spk-title">The Recovery Case</div>
+          <div class="spk-desc">Crime down 20% &middot; murder down 13% &middot; the numbers are real</div>
+        </div>
+
+        <div class="vs-col"><span class="vs-text">VS</span></div>
+
+        <div class="speaker opp">
+          <span class="pos-label">OPPONENT &middot; AGAINST</span>
+          <div class="name-row">
+            <span class="spk-name">Sam Kriss</span>
+          </div>
+          <div class="spk-affil">Writer &amp; Critic</div>
+          <div class="spk-title">The Soul Critique</div>
+          <div class="spk-desc">Playmobil toy town &middot; assimilated by a corporate hive mind</div>
+        </div>
+      </div>
+
+      <div class="clash">
+        <p style="text-align: left"><span class="clash-label">The Clash<br></br></span><b>Solana</b> arrives with data: violent crime down 20%, murder down 13%, tax revenue set to rise by $1.4 billion. These numbers are significant.<br></br><b>Kriss</b> doesn&rsquo;t dispute them. He disputes what they prove. A city&rsquo;s recovery isn&rsquo;t visible in a spreadsheet, Kriss holds; it&rsquo;s proved by whether its streets produce culture, argument, strangeness. San Francisco&rsquo;s current iteration has produced driverless cars and opaque B2B advertising. The Hippies and the Beats would disown it.<br></br><br>The House must decide: is a city its statistics, or its soul?</p>
+      </div>
+
+      <button class="divide-btn" onclick="toggleVerdict('v01', this)">The House&rsquo;s Decision <span class="caret">&#9660;</span></button>
+
+      <div class="verdict" id="v01">
+        <div class="verdict-inner">
+          <div class="verdict-result">Motion falls &middot; Ayes 35%, Noes 65%</div>
+          <div class="verdict-hl">The House sides with Kriss</div>
+          <div class="verdict-meta">Better case <strong>Kriss</strong>Sold data <strong>Solana</strong>The Decision <strong>No</strong></div>
+          <p class="verdict-analysis">Solana has the numbers and he&rsquo;s justified in deploying them; the city has measurably improved on every metric he cites. But Kriss has something the numbers can&rsquo;t capture: the texture of a place, the feeling of its streets, the palpable strangeness that made San Francisco San Francisco. A room full of San Franciscans listens to a British critic call their city a &ldquo;Playmobil toy town&rdquo; and applauds loudly. Solana calls the applause absurd masochism. He may be right. It doesn&rsquo;t change the vote. <strong>Solana proves the city is alive again. Kriss convinces us that it isn&rsquo;t yet itself.</strong></p>
+          <div class="verdict-foot">Decided by applause &middot; the room sided with the critic</div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 16px; font-size: 13px; letter-spacing: 0.06em;"><a href="https://youtu.be/YfCMUgs_b7k?si=ZnRLKxiAeimuEJrp" target="_blank" style="color: var(--orange);">Watch the full debate here</a></div>
+
+    </section>
+
+
+    <!-- ── 02 · THE MACHINE ── -->
+    <section class="motion" id="m02">
+
+      <div class="motion-eyebrow"><span class="num">02</span> &middot; The Machine</div>
+      <h2 class="motion-q">&ldquo;Should Robots Take <em>Our Jobs</em>?&rdquo;</h2>
+      <p class="motion-intro"><strong>Yes:</strong> <b>Noah Smith</b>, the economist who sees in automation the same liberation that lifted humanity up from backbreaking farm work and into something better.<br></br><strong>No:</strong> <b>Brian Merchant</b>, who wrote the book (literally, or at least a book) on the Luddites and argues the original sin isn&rsquo;t the machine, it&rsquo;s who controls the machine. History vs. the present tense, with disruption on both sides of the ledger.</p>
+
+      <div class="speakers">
+        <div class="speaker prop">
+          <span class="pos-label">PROPONENT &middot; FOR</span>
+          <div class="name-row">
+            <span class="spk-name">Noah Smith</span>
+          </div>
+          <div class="spk-affil">Noahpinion &middot; Economist</div>
+          <div class="spk-title">The Liberation Argument</div>
+          <div class="spk-desc">90% of us used to farm &middot; automation freed us &middot; why stop now</div>
+        </div>
+
+        <div class="vs-col"><span class="vs-text">VS</span></div>
+
+        <div class="speaker opp">
+          <span class="pos-label">OPPONENT &middot; AGAINST</span>
+          <div class="name-row">
+            <span class="spk-name">Brian Merchant</span>
+          </div>
+          <div class="spk-affil">Journalist &middot; Blood in the Machine</div>
+          <div class="spk-title">A Defense of the Luddites</div>
+          <div class="spk-desc">The Luddites weren&rsquo;t anti-machine &middot; they were anti-exploitation</div>
+        </div>
+      </div>
+
+      <div class="clash">
+        <p><span class="clash-label">The Clash<br></br></span><b>Smith</b> points to agriculture: once 90% of all humans worked on farms; now almost none do, and the freed labour built the modern world. The pattern always resolves in abundance.<br></br><b>Merchant</b>&rsquo;s reply: the Luddites weren&rsquo;t anti-technology; they were protesting factory bosses who weaponized machines to destroy skilled workers&rsquo; livelihoods. The difference between automation-as-liberation and automation-as-extraction isn&rsquo;t the machine; it&rsquo;s who captures the gain.<br></br>The House must decide whether this time looks like the first story or the second.</p>
+      </div>
+
+      <button class="divide-btn" onclick="toggleVerdict('v02', this)">The House&rsquo;s Decision <span class="caret">&#9660;</span></button>
+
+      <div class="verdict" id="v02">
+        <div class="verdict-inner">
+          <div class="verdict-result">The House is tied &middot; Ayes 50%, Noes 50%</div>
+          <div class="verdict-hl">The House cannot decide</div>
+          <div class="verdict-meta">Better case <strong>Even</strong>Sharpest point <strong>Merchant</strong>The Decision <strong>Tie</strong></div>
+          <p class="verdict-analysis">Smith has history behind him: every previous wave of automation produced net abundance for most people.<br><br>Merchant has the present: 42% of AI pilots abandoned last year, creative workers already displaced, gains flowing upward to a very small number of people. <strong>Smith has the long view. Merchant has the current view. The House couldn&rsquo;t choose.</strong></p>
+          <div class="verdict-foot">Decided by applause &middot; the only motion the House could not divide</div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 16px; font-size: 13px; letter-spacing: 0.06em;"><a href="https://youtu.be/-3Agss3ldWw?si=-Or8zpJmV0cv0A8Y" target="_blank" style="color: var(--orange);">Watch the full debate here</a></div>
+
+    </section>
+
+
+    <!-- ── 03 · THE CHILD ── -->
+    <section class="motion" id="m03">
+
+      <div class="motion-eyebrow"><span class="num">03</span> &middot; The Children</div>
+      <h2 class="motion-q">&ldquo;Should We Have <em>Superbabies</em>?&rdquo;</h2>
+      <p class="motion-intro"><strong>Yes:</strong> <b>Josie Zayner</b>, the biohacker/entrepreneur who has already edited her own genome and cannot fathom why everyone else is still waiting.<br></br><strong>No:</strong> <b>Kristen V. Brown</b>, the science journalist who argues that the genome is not software, that the risks are not theoretical, and that what we might lose in the editing is harder to name than what we&rsquo;d gain. The Nietzschean against the humanist.</p>
+
+      <div class="speakers">
+        <div class="speaker prop">
+          <span class="pos-label">PROPONENT &middot; FOR</span>
+          <div class="name-row">
+            <span class="spk-name">Josie Zayner</span>
+          </div>
+          <div class="spk-affil">FOUNDER &amp; CEO, THE EMBRYO CORPORATION</div>
+          <div class="spk-title">The Nietzschean Yawp</div>
+          <div class="spk-desc">Millions die while we debate &middot; she won&rsquo;t wait</div>
+        </div>
+
+        <div class="vs-col"><span class="vs-text">VS</span></div>
+
+        <div class="speaker opp">
+          <span class="pos-label">OPPONENT &middot; AGAINST</span>
+          <div class="name-row">
+            <span class="spk-name">Kristen V. Brown</span>
+          </div>
+          <div class="spk-affil">Science Journalist</div>
+          <div class="spk-title">Caution at the Cliff's Edge</div>
+          <div class="spk-desc">Biology is not software &middot; imperfection has its own dignity</div>
+        </div>
+      </div>
+
+      <div class="clash">
+        <p><span class="clash-label">The Clash<br></br></span><b>Zayner</b>&rsquo;s argument is visceral: there are roughly 10,000 single-gene diseases, millions suffer from preventable genetic conditions, and the technology to address them exists now. Every year we don&rsquo;t use it, people die. Now that we know this and don't act, those deaths are on our hands.<br></br><b><br></br>Brown</b>&rsquo;s reply: the motion asks &ldquo;Should we design our children,&rdquo; not merely cure them, and those are not the same thing. Most traits are polygenic, shaped by thousands of genes and their environmental interactions. Off-target effects are real. Mosaicism is real. And heritable edits don&rsquo;t just affect the person born with them; they change the genome of every descendant they will ever have.<br></br>The House must decide whether the urgency of suffering outweighs the risk of irreversibility.</p>
+      </div>
+
+      <button class="divide-btn" onclick="toggleVerdict('v03', this)">The House&rsquo;s Decision <span class="caret">&#9660;</span></button>
+
+      <div class="verdict" id="v03">
+        <div class="verdict-inner">
+          <div class="verdict-result">Motion falls &middot; Ayes 39%, Noes 61%</div>
+          <div class="verdict-hl">The House sides with Brown</div>
+          <div class="verdict-meta">Better case <strong>Brown</strong>Boldest claim <strong>Zayner</strong>The Decision <strong>No</strong></div>
+          <p class="verdict-analysis">Zayner&rsquo;s case is the most emotionally compelling in the room: people suffer, the technology exists, and philosophical hesitation has a body count. She is right about that. But Brown finds the gap that sinks the motion. It asks us to &ldquo;design our children,&rdquo; not merely cure them, and those are different things. The complexity of polygenic traits, the irreversibility of heritable edits, the compounding inequality of a genetic trust fund across generations: these are not hypotheticals. They are what happens when the promise meets the biology. <strong>Zayner brings the urgency. Brown brings the consequences. The House chooses consequences.</strong></p>
+          <div class="verdict-foot">Decided by applause &middot; caution over the Nietzschean</div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 16px; font-size: 13px; letter-spacing: 0.06em;"><a href="https://youtu.be/fAxRj3njH7I?si=JwC0FtxV7h3mb4_L" target="_blank" style="color: var(--orange);">Watch the full debate here</a></div>
+
+    </section>
+
+
+    <!-- ── 04 · THE TASTE ── -->
+    <section class="motion" id="m04" style="padding-bottom: 20px;">
+
+      <div class="motion-eyebrow"><span class="num">04</span> &middot; Taste</div>
+      <h2 class="motion-q">&ldquo;Can You Teach an AI <em>Taste</em>?&rdquo;</h2>
+      <p class="motion-intro">The last word of the debate. The empiricist against the romantic.<br></br><strong>Yes:</strong> Jasmine Sun, who built the night and argues that taste is just training by another name.<br></br><strong>No:</strong> Robin Sloan, the novelist who argues that taste requires finitude, stakes, and the weight of a decision that cannot be unmade.</p>
+
+      <div class="speakers">
+        <div class="speaker prop">
+          <span class="pos-label">PROPONENT &middot; FOR</span>
+          <div class="name-row">
+            <span class="spk-name">Jasmine Sun</span>
+          </div>
+          <div class="spk-affil">Substack &middot; Host</div>
+          <div class="spk-title">The Learner Model</div>
+          <div class="spk-desc">Move 37 is just sparkling statistics &middot; so is human intuition</div>
+        </div>
+
+        <div class="vs-col"><span class="vs-text">VS</span></div>
+
+        <div class="speaker opp">
+          <span class="pos-label">OPPONENT &middot; AGAINST</span>
+          <div class="name-row">
+            <span class="spk-name">Robin Sloan</span>
+          </div>
+          <div class="spk-affil">Author &amp; Technologist</div>
+          <div class="spk-title">The Romantic Defence</div>
+          <div class="spk-desc">Only finite beings can truly, meaningfully, go for it</div>
+        </div>
+      </div>
+
+      <div class="clash">
+        <p style="font-size: 17px"><span class="clash-label">The Clash<br></br></span><b>Sun argues</b> that taste is not a mystical gift but an acquired capacity (Pierre Bourdieu said as much in 1979) and if humans develop discernment through exposure, education and love, then a model trained on all of human culture is learning taste by the same mechanism.<br></br><b>Sloan&rsquo;s reply</b>: taste isn&rsquo;t just pattern recognition, it&rsquo;s commitment. A model that generates a billion songs has not chosen any of them. The decision is the thing. An AI&rsquo;s choices are never final, never costly, never staked, and something that <i>costs</i> nothing to decide <i>means</i> nothing when decided.<br></br>At the opening of the second round, each Disputant pulls a secret weapon from his and her rhetorical sleeve.<br></br>Sloan's weapon: <a href="https://www.lesswrong.com/posts/zAcYRJP9CZcYXTs7o/what-was-so-great-about-move-37" style="color: #8B1A1A">Move 37</a>.<br></br>Now it's Sun's turn to pull out her ace in the hole, and it's... also Move 37!<br></br><br></br>The House must determine whether taste resides in its documented patterns or in the price of choosing.</p>
+      </div>
+
+      <button class="divide-btn" onclick="toggleVerdict('v04', this)">The House&rsquo;s Decision <span class="caret">&#9660;</span></button>
+
+      <div class="verdict" id="v04">
+        <div class="verdict-inner">
+          <div class="verdict-result">Motion falls &middot; Ayes 42%, Noes 58%</div>
+          <div class="verdict-hl">The House sides with Sloan</div>
+          <div class="verdict-meta">Better case <strong>Sloan</strong>Sharpest argument <strong>Sun</strong>The Decision <strong>No</strong></div>
+          <p class="verdict-analysis">Sun makes the best empiricist case available: taste is learned, AI learns, therefore AI can have taste. The logic is clean and hard to dismiss. But Sloan pinpoints the element Sun's framing leaves out: finality. We don&rsquo;t just choose; we give something up in choosing. We live with what we picked. An AI that can output a million variations, depending on the prompt, has not chosen between them in any sense that matters. The choice was still always going to be made by a human. <strong>Sun shows how AI can learn the grammar of taste. Sloan wins with the argument that taste is a function of human limitations.<br></br></strong></p>
+          <div class="verdict-foot">Decided by applause &middot; the room voted for finitude</div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 16px; font-size: 13px; letter-spacing: 0.06em;"><a href="https://youtu.be/fAxRj3njH7I?si=JwC0FtxV7h3mb4_L" target="_blank" style="color: var(--orange);">Watch the full debate here</a></div>
+
+    </section>
+
+
+  </div>
+</main>
+
+<div class="container" style="text-align: left; padding: 32px 24px; font-size: 12px; letter-spacing: 0.1em; color: var(--muted); border-top: 1px solid var(--border)">
+  <strong style="color: rgb(240, 230, 208); font-size: 15px; letter-spacing: normal; text-align: left;">A note on the format:</strong> &middot; I straight-up <b>CRIBBE</b>D this format HTML from <a href="https://substack.com/@edcotton/" style="color: #B8351F">Ed Cotton</a>'s awesome<br></br><a href="https://cancannes.vercel.app/" style="color: #B8351F" target="_blank" rel="noopener noreferrer">imaginary Cannes Lions 2026 Debates</a> site that he whipped up back in June.
+</div>
+
+<!-- ════════════════════════════════
+     FOOTER
+════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    &#9733; Utopia &middot; The Substack <i>Stacked</i> <i>Debates</i> &#9733;
+  </div>
+</footer>
+
+
+<script>
+  function toggleVerdict(id, btn) {
+    const v    = document.getElementById(id);
+    const open = v.classList.toggle('open');
+    btn.classList.toggle('open', open);
+  }
+
+  function revealAll(btn) {
+    const vs      = document.querySelectorAll('.verdict');
+    const btns    = document.querySelectorAll('.divide-btn');
+    const allOpen = [...vs].every(v => v.classList.contains('open'));
+    vs.forEach(v   => v.classList.toggle('open', !allOpen));
+    btns.forEach(b => b.classList.toggle('open', !allOpen));
+    btn.textContent = allOpen ? 'Reveal every division' : 'Hide every division';
+  }
+</script>
+
+</body>
+</html>
