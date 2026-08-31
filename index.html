@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELO — Extremely Low Orbit</title>
+<meta name="description" content="Field notes from AI-industry and literary San Francisco. Extremely Low Orbit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void: #0E1220;
+    --horizon: #2C2F5A;
+    --groundglow: #D98A3D;
+    --parchment: #F1ECDF;
+    --slate: #A6ABC4;
+    --rule: #40446E;
+    --max: 780px;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--void);
+    color: var(--parchment);
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .mono{
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero{
+    position: relative;
+    padding: 72px 0 0;
+    background: var(--void);
+    overflow: hidden;
+  }
+
+  nav.top{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 24px;
+    font-size: 0.8rem;
+  }
+
+  nav.top .links a{
+    text-decoration: none;
+    color: var(--slate);
+    margin-left: 20px;
+  }
+  nav.top .links a:hover{ color: var(--groundglow); }
+
+  .hero-body{
+    padding: 64px 0 0;
+  }
+
+  .wordmark{
+    font-size: clamp(4.5rem, 15vw, 8.5rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+    margin: 0;
+  }
+
+  .spellout{
+    margin: 14px 0 28px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--groundglow);
+  }
+
+  .tagline{
+    max-width: 46ch;
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--parchment);
+    margin: 0;
+  }
+
+  /* skyline background image */
+  .horizon-bg{
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 56px;
+  }
+
+  /* ---------- About / specs ---------- */
+
+  .section{
+    padding: 64px 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .grid-2{
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 48px;
+  }
+
+  h2.label{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--slate);
+    margin: 0 0 18px;
+    font-weight: 500;
+  }
+
+  .about-copy p{
+    font-size: 1.05rem;
+    margin: 0 0 16px;
+  }
+
+  .about-copy p:last-child{ margin-bottom: 0; }
+
+  .specs{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--slate);
+  }
+
+  .specs dt{
+    color: var(--groundglow);
+    margin-top: 16px;
+  }
+  .specs dt:first-child{ margin-top: 0; }
+
+  .specs dd{
+    margin: 4px 0 0;
+    color: var(--parchment);
+  }
+
+  /* ---------- Log / transmissions ---------- */
+
+  .log-entry{
+    display: block;
+    padding: 28px 0;
+    border-top: 1px solid var(--rule);
+    text-decoration: none;
+    color: inherit;
+  }
+  .log-entry:first-of-type{ border-top: none; padding-top: 8px; }
+
+  .log-meta{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--slate);
+    margin-bottom: 8px;
+  }
+
+  .log-tag{
+    color: var(--groundglow);
+  }
+
+  .log-title{
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0 0 6px;
+  }
+
+  .log-teaser{
+    font-size: 0.98rem;
+    color: var(--slate);
+    margin: 0;
+    max-width: 60ch;
+  }
+
+  .log-entry:hover .log-title{ color: var(--groundglow); }
+
+  /* ---------- Footer ---------- */
+
+  footer{
+    border-top: 1px solid var(--rule);
+    padding: 40px 0 56px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--slate);
+  }
+
+  footer a{
+    color: var(--parchment);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+  }
+  footer a:hover{ color: var(--groundglow); border-color: var(--groundglow); }
+
+  .footer-links{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 16px;
+  }
+
+  /* ---------- Responsive ---------- */
+
+  @media (max-width: 640px){
+    .grid-2{ grid-template-columns: 1fr; gap: 40px; }
+    .hero-body{ padding: 40px 0 64px; }
+    nav.top{ font-size: 0.72rem; }
+    nav.top .links a{ margin-left: 14px; }
+  }
+
+  /* keyboard focus visibility */
+  a:focus-visible{
+    outline: 2px solid var(--groundglow);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <nav class="top mono">
+    <span>ELO</span>
+    <span class="links">
+      <a href="#log">Log</a>
+      <a href="#about">About</a>
+      <a href="https://elo.substack.com">Substack</a>
+    </span>
+  </nav>
+
+  <div class="wrap hero-body">
+    <p class="wordmark">ELO</p>
+    <p class="spellout mono">Extremely Low Orbit</p>
+    <p class="tagline">
+      <!-- DRAFT COPY — Josh to finalize -->
+      Close enough to feel the pull, too grounded to leave the atmosphere.
+    </p>
+
+    <img class="horizon-bg" src="../assets/hero-bg.png" alt="Night skyline of Sutro Tower, the Bay Bridge lit with the Bay Lights, and the UC Berkeley Campanile over San Francisco Bay">
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="section" id="about">
+    <div class="grid-2">
+      <div class="about-copy">
+        <h2 class="label">About</h2>
+        <!-- DRAFT COPY — Josh to finalize; placeholder scaffolding only -->
+        <p>
+          Field notes from the rooms where San Francisco argues with itself about what
+          comes next: AI-industry workshops and launches on one side of town, readings
+          and small-press gatherings on the other. Written from inside both, since not
+          many people are.
+        </p>
+        <p>
+          Filed after, not during. Reported at ground level, no matter how high the
+          conversation gets.
+        </p>
+      </div>
+
+      <dl class="specs">
+        <h2 class="label">Mission specs</h2>
+        <dt>Altitude</dt>
+        <dd>Sea level, mostly</dd>
+        <dt>Coverage</dt>
+        <dd>AI-industry &amp; literary San Francisco</dd>
+        <dt>Cadence</dt>
+        <dd>After the fact, before it's forgotten</dd>
+        <dt>Companion log</dt>
+        <dd><a href="https://github.com/JoshMcHugh" style="color:var(--parchment); border-bottom:1px solid var(--rule); text-decoration:none;">GitHub repo</a></dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" id="log">
+    <h2 class="label">Transmissions</h2>
+
+    <a class="log-entry" href="#">
+      <div class="log-meta">
+        <span>DEC 2025 &middot; BIMBO'S 365 CLUB, NORTH BEACH</span>
+        <span class="log-tag">LITERARY</span>
+      </div>
+      <!-- DRAFT COPY — Josh to finalize title/teaser -->
+      <p class="log-title">The Utopia Debates</p>
+      <p class="log-teaser">
+        Chris Best in a Santa hat, four hundred people, and a stage argument over
+        whether San Francisco is back. First entry in the log.
+      </p>
+    </a>
+
+    <a class="log-entry" href="#">
+      <div class="log-meta">
+        <span>SEP 2026 &middot; MOX, 1680 MISSION ST</span>
+        <span class="log-tag">AI</span>
+      </div>
+      <p class="log-title">Lightning Talks &amp; Project Show 'n Tell</p>
+      <p class="log-teaser">
+        Placeholder entry &mdash; swap in the real writeup once drafted.
+      </p>
+    </a>
+
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="https://elo.substack.com">Read on Substack</a>
+      <a href="https://github.com/JoshMcHugh">GitHub</a>
+      <a href="https://attentionspan.com">Attention Span Media</a>
+    </div>
+    <span>&copy; 2026 Josh McHugh</span>
+  </div>
+</footer>
+
+</body>
+</html>
