@@ -50,7 +50,13 @@
   .hero{
     position: relative;
     padding: 72px 0 0;
-    background: var(--void);
+    min-height: 560px;
+    background-image:
+      linear-gradient(180deg, rgba(14,18,32,0.55) 0%, rgba(14,18,32,0.15) 45%, rgba(14,18,32,0.6) 100%),
+      url('Sutro_BridgeLights_Campanile.png');
+    background-size: cover;
+    background-position: bottom center;
+    background-repeat: no-repeat;
     overflow: hidden;
   }
 
@@ -72,15 +78,16 @@
   nav.top .links a:hover{ color: var(--groundglow); }
 
   .hero-body{
-    padding: 64px 0 0;
+    padding: 64px 0 96px;
   }
 
   .wordmark{
-    font-size: clamp(4.5rem, 15vw, 8.5rem);
+    font-size: clamp(4.5rem, 13vw, 7.5rem);
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 0.9;
     margin: 0;
+    text-shadow: 0 2px 24px rgba(7,9,18,0.65);
   }
 
   .spellout{
@@ -89,6 +96,7 @@
     text-transform: uppercase;
     letter-spacing: 0.18em;
     color: var(--groundglow);
+    text-shadow: 0 1px 12px rgba(7,9,18,0.7);
   }
 
   .tagline{
@@ -97,15 +105,10 @@
     font-style: italic;
     color: var(--parchment);
     margin: 0;
+    text-shadow: 0 1px 16px rgba(7,9,18,0.7);
   }
 
-  /* skyline background image */
-  .horizon-bg{
-    display: block;
-    width: 100%;
-    height: auto;
-    margin-top: 56px;
-  }
+  /* skyline now lives in the hero background image itself (see .hero) */
 
   /* ---------- About / specs ---------- */
 
@@ -254,7 +257,6 @@
       Close enough to feel the pull, too grounded to leave the atmosphere.
     </p>
 
-    <img class="horizon-bg" src="../assets/hero-bg.png" alt="Night skyline of Sutro Tower, the Bay Bridge lit with the Bay Lights, and the UC Berkeley Campanile over San Francisco Bay">
   </div>
 </div>
 
